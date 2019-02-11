@@ -1,0 +1,52 @@
+
+    <html>
+    <head>
+      <script type="text/javascript" src="VIS/dist/vis.js"></script>
+      <link href="VIS/dist/vis.css" rel="stylesheet" type="text/css">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    <body>
+
+    <div id="VIS_draw"></div>
+
+    <script type="text/javascript">
+      var nodes = [{'group': 'Event', 'id': 28, 'label': 'updated'}, {'group': 'Event', 'id': 19, 'label': 'keyword'}, {'group': 'Event', 'id': 34, 'label': 'US'}, {'group': 'Event', 'id': 36, 'label': 'Army'}, {'group': 'Event', 'id': 32, 'label': 'contributions'}, {'group': 'Event', 'id': 24, 'label': 'has'}, {'group': 'Event', 'id': 26, 'label': 'been'}, {'group': 'Event', 'id': 30, 'label': 'reflect'}, {'group': 'Event', 'id': 38, 'label': 'Research'}, {'group': 'Event', 'id': 40, 'label': 'Laboratory'}, {'group': 'Event', 'id': 22, 'label': 'article'}, {'group': 'Event', 'id': 41, 'label': 'frequency'}, {'group': 'Event', 'id': 119, 'label': 'Greenstadt'}, {'group': 'Event', 'id': 63, 'label': 'Person'}, {'group': 'Event', 'id': 118, 'label': 'Caliskan'}, {'group': 'Event', 'id': 67, 'label': 'Organization'}, {'group': 'Event', 'id': 117, 'label': 'GitHub'}, {'group': 'Event', 'id': 110, 'label': 'Rachel Greenstadt'}, {'group': 'Event', 'id': 109, 'label': 'Drexel University'}, {'group': 'Event', 'id': 111, 'label': 'Aylin Caliskan'}, {'group': 'Event', 'id': 105, 'label': 'George Washington University'}, {'group': 'Event', 'id': 56, 'label': 'DefCon'}, {'group': 'Event', 'id': 58, 'label': 'the United States Army Research Laboratory'}, {'group': 'Event', 'id': 60, 'label': 'Google'}, {'group': 'Event', 'id': 122, 'label': 'Lucy Simko'}, {'group': 'Event', 'id': 123, 'label': 'the University of Washington'}, {'group': 'Event', 'id': 66, 'label': 'the US Army Research Laboratory'}];
+      var edges = [{'from': 28, 'label': '', 'to': 19}, {'from': 34, 'label': '', 'to': 19}, {'from': 36, 'label': '', 'to': 19}, {'from': 32, 'label': '', 'to': 19}, {'from': 24, 'label': '', 'to': 19}, {'from': 26, 'label': '', 'to': 19}, {'from': 30, 'label': '', 'to': 19}, {'from': 38, 'label': '', 'to': 19}, {'from': 40, 'label': '', 'to': 19}, {'from': 22, 'label': '', 'to': 19}, {'from': 22, 'label': '', 'to': 28}, {'from': 22, 'label': '', 'to': 41}, {'from': 24, 'label': '', 'to': 41}, {'from': 26, 'label': '', 'to': 41}, {'from': 28, 'label': '', 'to': 41}, {'from': 30, 'label': '', 'to': 41}, {'from': 32, 'label': '', 'to': 41}, {'from': 34, 'label': '', 'to': 41}, {'from': 36, 'label': '', 'to': 41}, {'from': 38, 'label': '', 'to': 41}, {'from': 40, 'label': '', 'to': 41}, {'from': 119, 'label': '', 'to': 63}, {'from': 118, 'label': '', 'to': 67}, {'from': 117, 'label': '', 'to': 67}, {'from': 110, 'label': '', 'to': 63}, {'from': 109, 'label': '', 'to': 67}, {'from': 111, 'label': '', 'to': 63}, {'from': 105, 'label': '', 'to': 67}, {'from': 56, 'label': '', 'to': 67}, {'from': 58, 'label': '', 'to': 67}, {'from': 60, 'label': '', 'to': 67}, {'from': 122, 'label': '', 'to': 63}, {'from': 123, 'label': '', 'to': 67}, {'from': 66, 'label': '', 'to': 67}, {'from': 117, 'label': '', 'to': 119}, {'from': 119, 'label': '', 'to': 117}, {'from': 105, 'label': '', 'to': 119}, {'from': 105, 'label': '', 'to': 109}, {'from': 105, 'label': '', 'to': 111}, {'from': 105, 'label': '', 'to': 110}, {'from': 119, 'label': '', 'to': 105}, {'from': 119, 'label': '', 'to': 109}, {'from': 119, 'label': '', 'to': 111}, {'from': 119, 'label': '', 'to': 110}, {'from': 109, 'label': '', 'to': 105}, {'from': 109, 'label': '', 'to': 119}, {'from': 109, 'label': '', 'to': 111}, {'from': 109, 'label': '', 'to': 110}, {'from': 111, 'label': '', 'to': 105}, {'from': 111, 'label': '', 'to': 119}, {'from': 111, 'label': '', 'to': 109}, {'from': 111, 'label': '', 'to': 110}, {'from': 110, 'label': '', 'to': 105}, {'from': 110, 'label': '', 'to': 119}, {'from': 110, 'label': '', 'to': 109}, {'from': 110, 'label': '', 'to': 111}, {'from': 117, 'label': '', 'to': 118}, {'from': 119, 'label': '', 'to': 118}, {'from': 118, 'label': '', 'to': 117}, {'from': 118, 'label': '', 'to': 119}, {'from': 123, 'label': '', 'to': 122}, {'from': 122, 'label': '', 'to': 123}];
+
+      var container = document.getElementById("VIS_draw");
+
+      var data = {
+        nodes: nodes,
+        edges: edges
+      };
+
+      var options = {
+          nodes: {
+              shape: 'circle',
+              size: 15,
+              font: {
+                  size: 15
+              }
+          },
+          edges: {
+              font: {
+                  size: 10,
+                  align: 'center'
+              },
+              color: 'red',
+              arrows: {
+                  to: {enabled: true, scaleFactor: 1.2}
+              },
+              smooth: {enabled: true}
+          },
+          physics: {
+              enabled: true
+          }
+      };
+
+      var network = new vis.Network(container, data, options);
+
+    </script>
+    </body>
+    </html>
+    
