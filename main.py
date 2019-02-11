@@ -115,4 +115,4 @@ Updated 8/14/18 2:53 PM PST: This article has been updated to reflect the contri
 """
 
 Miner = NewsMining()
-Miner.main(content3)
+Miner.main(content1)
