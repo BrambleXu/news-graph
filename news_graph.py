@@ -167,6 +167,7 @@ class NewsMining():
         triples = []        # store subject verb object
         events = []         # store events
 
+        source_text = content
         # 01 remove linebreaks and brackets
         content = self.remove_noisy(content)
         content = self.clean_spaces(content)
@@ -225,4 +226,4 @@ class NewsMining():
         events += co_events
 
         # 08 show event graph
-        self.graph_shower.create_page(events)
+        self.graph_shower.create_page(events, source_text=source_text)

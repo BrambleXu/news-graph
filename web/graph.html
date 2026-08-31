@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>News Graph — Explore the story</title>
+  <style>@@STYLE@@</style>
+</head>
+<body>
+  <header class="masthead">
+    <a class="brand" href="#main" aria-label="News Graph home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 8 24 13 13 25Z"/><circle cx="8" cy="8" r="4"/><circle cx="24" cy="13" r="4"/><circle cx="13" cy="25" r="4"/></svg>
+      NEWS GRAPH<span class="brand-divider"></span><span class="brand-subtitle">A text exploration tool</span>
+    </a>
+    <span class="offline-badge"><span></span> Local &amp; offline</span>
+  </header>
+  <main id="main">
+    <section class="intro" aria-labelledby="page-title">
+      <div><p class="eyebrow">THE STORY, CONNECTED</p><h1 id="page-title">Follow the connections.</h1><p class="intro-copy">A closer look at the people, places, and organizations in your text.</p></div>
+      <div class="summary"><div><strong id="entity-total">—</strong><span>entities</span></div><div><strong id="connection-total">—</strong><span>co-occurrences</span></div></div>
+    </section>
+    <section class="explorer" aria-label="Interactive news graph">
+      <div class="toolbar">
+        <label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></svg><input id="search" type="search" placeholder="Find an entity…" aria-label="Search entities" autocomplete="off"></label>
+        <div class="type-filters" role="group" aria-label="Entity types">
+          <button data-type="Person" aria-pressed="true"><i class="person"></i>People</button>
+          <button data-type="Organization" aria-pressed="true"><i class="organization"></i>Organizations</button>
+          <button data-type="Location" aria-pressed="true"><i class="location"></i>Places</button>
+        </div>
+        <button id="reset" class="text-button">Reset view</button>
+      </div>
+      <div class="explorer-body">
+        <div class="graph-panel">
+          <div class="canvas-heading"><span class="eyebrow">ENTITY NETWORK</span><span id="visible-count" aria-live="polite"></span></div>
+          <div id="graph-viewport"><div id="graph" role="img" aria-label="Interactive entity network. Use the entity list for keyboard navigation."></div></div>
+          <div id="graph-message" class="graph-message" role="status"><span class="message-symbol">◎</span><strong>Arranging the story…</strong><p>The graph stays on your device.</p></div>
+          <div class="canvas-bottom"><span><span id="layout-summary"></span><br><span class="line-key"></span>Same-sentence co-occurrence · Circle size = connections</span><div class="zoom-controls" role="group" aria-label="Graph viewport"><button id="zoom-out" aria-label="Zoom out">−</button><button id="fit" aria-label="Fit graph to view">↗</button><button id="zoom-in" aria-label="Zoom in">+</button></div></div>
+        </div>
+        <aside class="inspector" aria-label="Entity details">
+          <div class="inspector-heading"><span class="eyebrow" id="inspector-label">EXPLORE THE ENTITIES</span><button id="clear-selection" class="text-button" hidden>Back to list</button></div>
+          <div id="entity-list"></div>
+          <div id="detail" hidden>
+            <div id="detail-types" class="detail-types"></div><h2 id="detail-name"></h2>
+            <p id="detail-count" class="muted"></p>
+            <label class="focus-toggle"><input id="neighbors-only" type="checkbox"> Show only this neighborhood</label>
+            <h3>Connected to</h3><div id="neighbor-list"></div>
+            <h3>In the source text</h3><p class="evidence-note">Matching passages, not verified relationship evidence.</p><div id="source-matches"></div>
+          </div>
+          <div class="inspector-note"><strong>Connections, not conclusions.</strong><p>Sharing a sentence does not establish a factual relationship. Entity labels come from the NLP model.</p></div>
+        </aside>
+      </div>
+      <div class="graph-footer"><label><input id="show-extracted" type="checkbox"> Include unverified rule output <span class="dashed-key"></span></label><span>Click an entity to explore · Drag to pan · Scroll to zoom</span></div>
+    </section>
+    <section class="word-panels" aria-label="Extracted word lists">
+      <div><div class="section-heading"><h2>Keywords</h2><span>TextRank output</span></div><div id="keywords" class="word-list"></div></div>
+      <div><div class="section-heading"><h2>Frequent words</h2><span>Original ranking</span></div><div id="frequent-words" class="word-list"></div></div>
+    </section>
+    <p class="data-note">This view preserves the existing extraction results. Keyword lists may reflect only the final sentence; negation and passive relationships are not reliably handled by the current extractor.</p>
+    <details class="source"><summary>Read the source text</summary><pre id="source-text"></pre></details>
+    <footer class="page-footer"><span>NEWS GRAPH <span class="muted">/ Built for a closer reading.</span></span><span>Rendered with AntV G6 5.1.1 · No external requests</span></footer>
+  </main>
+  <noscript><p class="noscript">Enable JavaScript to explore this graph. No network connection is needed.</p></noscript>
+  <script id="graph-data" type="application/json">@@DATA@@</script>
+  <script id="g6-license" type="text/plain">@@LICENSE@@</script>
+  <script>@@G6@@</script>
+  <script>@@APP@@</script>
+</body>
+</html>
