@@ -15,7 +15,13 @@ News Graph uses spaCy and TextRank to extract entities, rule-based relationships
 
 Open the included `graph_show.html` directly in a modern browser to try the demo. Each generated HTML contains its JavaScript, styles, graph data, and supplied source text, so you can move it or share it without a server or internet connection. Be aware that sharing the HTML also shares the source text.
 
-![G6 news graph](docs/g6-preview.png)
+## The Wandering Earth — default output
+
+19 entities and 12 links, including the network around Liu Qi and Liu Peiqiang.
+
+![Actual G6 output for content1: The Wandering Earth, 19 entities and 12 links](docs/g6-preview.png)
+
+See [two more example outputs](#additional-example-outputs) at the end of this README.
 
 # How to use
 
@@ -40,6 +46,8 @@ Miner.main(content)
 ```
 
 This writes `graph_show.html` in the current working directory, replacing any existing file with that name. Open it in your browser. Run `uv run python main.py` to regenerate the supplied example.
+
+[`main.py`](main.py) contains three articles, but its final call is **`Miner.main(content1)`**. Running `uv run python main.py` therefore processes only the first article; it does not process or combine all three.
 
 ## Manage dependencies
 
@@ -87,6 +95,30 @@ uv run python -m unittest discover -s tests -v
 ```
 
 Maintainers with Node.js can also run the layout geometry checks using `node --test tests/graph-layout.test.cjs`. These use the included G6 bundle and require no npm install; Node.js is not needed to generate or view the HTML.
+
+## Additional example outputs
+
+All three screenshots in this README were captured from separate runs with Python 3.14.7, spaCy 3.8.16, `en_core_web_lg` 3.8.0, and G6 5.1.1. They show the default view: all entity types enabled and unverified rule outputs hidden. Counts refer to displayed entities and deduplicated same-sentence co-occurrence links, not verified facts.
+
+| Input | Article | Entities | Links | Runs by default? |
+| --- | --- | ---: | ---: | --- |
+| `content1` | *The Wandering Earth* film review | 19 | 12 | Yes |
+| `content2` | Tokyo Marathon 2019 elite field | 20 | 17 | No |
+| `content3` | Identifying programmers through coding fingerprints | 16 | 15 | No |
+
+To reproduce the second or third result, change the final call in `main.py` to `Miner.main(content2)` or `Miner.main(content3)`, then run `uv run python main.py`. Each run replaces `graph_show.html`; it does not create three separate HTML files. Restore `Miner.main(content1)` to return to the default demo.
+
+### Tokyo Marathon 2019
+
+20 entities and 17 links, including runners and locations such as Inoue, Osako, Tokyo, and Chicago.
+
+![Actual G6 output for content2: Tokyo Marathon, 20 entities and 17 links](docs/g6-tokyo-marathon.png)
+
+### Coding fingerprints
+
+16 entities and 15 links, including researchers and universities. This output also exposes current limitations: the dense component has crossing links and crowded labels, and name variants remain separate entities. These are the current extraction and layout results, without manual correction.
+
+![Actual G6 output for content3: coding fingerprints, 16 entities and 15 links](docs/g6-coding-fingerprints.png)
 
 # License
 
